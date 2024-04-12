@@ -1,7 +1,7 @@
 {
   "name": "e-comm",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple e-commerce application built with React and Vite.",
   "main": "index.js",
   "scripts": {
     "start": "vite",
@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Karl Young",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
