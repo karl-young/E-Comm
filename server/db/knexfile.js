@@ -1,15 +1,17 @@
-import * as Path from 'node:path'
-import * as URL from 'node:url'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 
-const __filename = URL.fileURLToPath(import.meta.url)
-const __dirname = Path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-export default {
+import path from 'path' // Importing the path module explicitly
+
+const knexConfig = {
   development: {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-      filename: Path.join(__dirname, 'dev.sqlite3'),
+      filename: path.join(__dirname, 'dev.sqlite3'), // Using the path module
     },
     pool: {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
@@ -23,10 +25,10 @@ export default {
       filename: ':memory:',
     },
     migrations: {
-      directory: Path.join(__dirname, 'migrations'),
+      directory: path.join(__dirname, 'migrations'), // Using the path module
     },
     seeds: {
-      directory: Path.join(__dirname, 'seeds'),
+      directory: path.join(__dirname, 'seeds'), // Using the path module
     },
     pool: {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
@@ -44,3 +46,5 @@ export default {
     },
   },
 }
+
+export default knexConfig
