@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 export function up(knex) {
-  return knex.schema.createTable('orders', function (table) {
+  return knex.schema.createTable('PurchaseItems', function (table) {
     table.increments('id').primary()
     table
       .integer('order_id')
@@ -28,5 +28,5 @@ export function up(knex) {
  * @returns { Promise<void> }
  */
 export function down(knex) {
-  return knex.schema.dropTableIfExists('order_items')
+  return knex.schema.dropTableIfExists('PurchaseItems')
 }
