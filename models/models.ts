@@ -5,7 +5,8 @@ export type Product = {
   description: string
   price: number
   image: string
-  category: string
+  quantity: number
+  image_url: string
 }
 
 // user model
