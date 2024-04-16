@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "e-comm",
   "version": "1.0.0",
   "description": "A simple e-commerce application built with React and Vite.",
@@ -19,9 +20,21 @@
     "seed:run": "npm run knex seed:run",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
   },
+  "jest": {
+    "moduleFileExtensions": ["js", "json", "jsx", "ts", "tsx", "node"],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "./tsconfig.json",
+        "esModuleInterop": true
+      }
+    }
+  },
   "keywords": [],
   "author": "Karl Young",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@tanstack/eslint-plugin-query": "^5.28.11",
