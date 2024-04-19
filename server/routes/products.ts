@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllProducts, getProductById } from '../db/db'
+import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from '../db/db'
 const router = express.Router()
 
 // GET /api/products - get all products
@@ -42,8 +42,25 @@ router.post('/api/products', async (req, res) => {
 })
 
 // PUT /api/products/:id - update product by id
-
+router.put('/api/products/:id', async (req, res) => {
+  try {
+    const product = req.body
+    const updatedProduct = await updateProduct(Number(req.params.id), product)
+    res.json(updatedProduct)
+  } catch (error: any) {
+    res.status(500).send('Error updating product')
+    console.error(error.message)
+  }
+})
 // DELETE /api/products/:id - delete product by id
-
+router.delete('/api/products/:id', async (req, res) => {
+  try {
+    const deletedProduct = await deleteProduct(Number(req.params.id))
+    res.json(deletedProduct)
+  } catch (error: any) {
+    res.status(500).send('Error deleting product')
+    console.error(error.message)
+  }
+})
 export default router
 
