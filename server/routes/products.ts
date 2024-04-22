@@ -1,5 +1,12 @@
 import express from 'express'
-import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from '../db/db'
+import {
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+  getProductById,
+  updateProduct,
+} from '../db/db'
+import * as utils from '../../utils'
 
 const router = express.Router()
 
@@ -8,10 +15,13 @@ router.get('/api/products', async (req, res) => {
   try {
     const products = await getAllProducts()
 
-    res.json(products)
+    const page = Number(req.query.page) || 1
+    const pageSize = Number(req.query.pageSize) || 10
+    const paginatedProducts = utils.paginate(products, page, pageSize)
+
+    res.json(paginatedProducts)
   } catch (error: any) {
-    res.status(500).send('Error getting products')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error getting products')
   }
 })
 
@@ -25,8 +35,7 @@ router.get('/api/products/:id', async (req, res) => {
       res.json(product)
     }
   } catch (error: any) {
-    res.status(500).send('Error getting product')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error getting single product')
   }
 })
 
@@ -37,8 +46,7 @@ router.post('/api/products', async (req, res) => {
     const newProduct = await createProduct(product)
     res.json(newProduct)
   } catch (error: any) {
-    res.status(500).send('Error creating product')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error creating product')
   }
 })
 
@@ -49,8 +57,7 @@ router.put('/api/products/:id', async (req, res) => {
     const updatedProduct = await updateProduct(Number(req.params.id), product)
     res.json(updatedProduct)
   } catch (error: any) {
-    res.status(500).send('Error updating product')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error updating product')
   }
 })
 // DELETE /api/products/:id - delete product by id
@@ -59,9 +66,7 @@ router.delete('/api/products/:id', async (req, res) => {
     const deletedProduct = await deleteProduct(Number(req.params.id))
     res.json(deletedProduct)
   } catch (error: any) {
-    res.status(500).send('Error deleting product')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error deleting product')
   }
 })
 export default router
-
