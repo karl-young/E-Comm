@@ -1,5 +1,6 @@
 import express from 'express'
 import { createProduct, deleteProduct, getAllProducts, getProductById, updateProduct } from '../db/db'
+
 const router = express.Router()
 
 // GET /api/products - get all products
