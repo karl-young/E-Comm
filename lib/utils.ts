@@ -1,5 +1,5 @@
 import { Response } from 'express'
-import { Product, User } from './models/models'
+import { Product, User } from '../models/models'
 
 // Utility function for pagination
 export function paginate<T>(items: T[], page: number, pageSize: number): T[] {

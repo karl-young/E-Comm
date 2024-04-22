@@ -6,7 +6,7 @@ import {
   getProductById,
   updateProduct,
 } from '../db/db'
-import * as utils from '../../utils'
+import * as utils from '../../lib/utils'
 
 const router = express.Router()
 
