@@ -1,5 +1,5 @@
 import express from 'express'
-
+import * as utils from '../../utils'
 
 const router = express.Router()
 
@@ -8,8 +8,7 @@ const router = express.Router()
 router.post('/api/users/register', async (req, res) => {
   try {
   } catch (error: any) {
-    res.status(500).send('Error creating user')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error registering user')
   }
 })
 
@@ -17,8 +16,7 @@ router.post('/api/users/register', async (req, res) => {
 router.post('/api/users/login', async (req, res) => {
   try {
   } catch (error: any) {
-    res.status(500).send('Error logging in user')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error logging in user')
   }
 })
 
@@ -26,8 +24,7 @@ router.post('/api/users/login', async (req, res) => {
 router.get('/api/users/:id', async (req, res) => {
   try {
   } catch (error: any) {
-    res.status(500).send('Error getting single user')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error getting single user')
   }
 })
 
@@ -35,8 +32,7 @@ router.get('/api/users/:id', async (req, res) => {
 router.put('/api/users/:id', async (req, res) => {
   try {
   } catch (error: any) {
-    res.status(500).send('Error updating user')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error updating user')
   }
 })
 
@@ -44,8 +40,7 @@ router.put('/api/users/:id', async (req, res) => {
 router.delete('/api/users/:id', async (req, res) => {
   try {
   } catch (error: any) {
-    res.status(500).send('Error deleting user')
-    console.error(error.message)
+    utils.handleError(res, 500, 'Error deleting user')
   }
 })
 
