@@ -5,8 +5,8 @@ import {
   getAllProducts,
   getProductById,
   updateProduct,
-} from '../db/db'
-import * as utils from '../../lib/utils'
+} from '../db/db.ts'
+import * as utils from '../../lib/utils.ts'
 
 const router = express.Router()
 
@@ -60,6 +60,7 @@ router.put('/api/products/:id', async (req, res) => {
     utils.handleError(res, 500, 'Error updating product')
   }
 })
+
 // DELETE /api/products/:id - delete product by id
 router.delete('/api/products/:id', async (req, res) => {
   try {
