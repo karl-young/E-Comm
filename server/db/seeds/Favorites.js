@@ -2,8 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.seed = async function (knex) {
-  // Deletes ALL existing entries
+export async function seed(knex) {
   await knex('Favorites').del()
   await knex('Favorites').insert([
     { user_id: 1, product_id: 3 },
