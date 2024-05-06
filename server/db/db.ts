@@ -1,5 +1,5 @@
-import db from './connection'
-import { Product } from '../../models/models'
+import db from './connection.ts'
+import { Product } from '../../models/models.ts'
 
 // Get all products
 export async function getAllProducts(): Promise<Product[]> {

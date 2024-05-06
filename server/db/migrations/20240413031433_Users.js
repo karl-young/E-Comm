@@ -3,13 +3,18 @@
  * @returns { Promise<void> }
  */
 export function up(knex) {
-  return knex.schema.createTable('users', function (table) {
-    table.increments('id').primary()
-    table.string('name').notNullable()
-    table.string('email').notNullable().unique()
-    table.string('password').notNullable()
-    table.timestamps(true, true)
-  })
+  try {
+    return knex.schema.createTable('users', function (table) {
+      table.increments('id').primary()
+      table.string('name').notNullable()
+      table.string('email').notNullable().unique()
+      table.string('password').notNullable()
+      table.timestamps(true, true)
+    })
+  } catch (error) {
+    console.error('Error creating users table: ', error)
+    throw error
+  }
 }
 
 /**
@@ -17,5 +22,10 @@ export function up(knex) {
  * @returns { Promise<void> }
  */
 export function down(knex) {
-  return knex.schema.dropTableIfExists('users')
+  try {
+    return knex.schema.dropTableIfExists('users')
+  } catch (error) {
+    console.error('Error dropping users table: ', error)
+    throw error
+  }
 }
