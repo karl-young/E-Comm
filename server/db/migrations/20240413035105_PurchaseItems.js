@@ -33,5 +33,10 @@ export function up(knex) {
  * @returns { Promise<void> }
  */
 export function down(knex) {
-  return knex.schema.dropTableIfExists('PurchaseItems')
+  try {
+    return knex.schema.dropTableIfExists('PurchaseItems')
+  } catch (error) {
+    console.error('Error dropping purchase items table: ', error)
+    throw error
+  }
 }

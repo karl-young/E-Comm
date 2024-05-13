@@ -31,5 +31,10 @@ export function up(knex) {
  * @returns { Promise<void> }
  */
 export function down(knex) {
-  return knex.schema.dropTableIfExists('Favorites')
+  try {
+    return knex.schema.dropTableIfExists('Favorites')
+  } catch (error) {
+    console.error('Error dropping favorites table: ', error)
+    throw error
+  }
 }
