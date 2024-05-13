@@ -3,18 +3,23 @@
  * @returns { Promise<void> }
  */
 export function up(knex) {
-  return knex.schema.createTable('orders', function (table) {
-    table.increments('id').primary()
-    table
-      .integer('user_id')
-      .unsigned()
-      .references('id')
-      .inTable('Users')
-      .onDelete('CASCADE')
-    table.decimal('total_price').notNullable()
-    table.string('status').notNullable().defaultTo('pending')
-    table.timestamps(true, true)
-  })
+  try {
+    return knex.schema.createTable('Orders', function (table) {
+      table.increments('id').primary()
+      table
+        .integer('user_id')
+        .unsigned()
+        .references('id')
+        .inTable('Users')
+        .onDelete('CASCADE')
+      table.decimal('total_price').notNullable()
+      table.string('status').notNullable().defaultTo('pending')
+      table.timestamps(true, true)
+    })
+  } catch (error) {
+    console.error('Error creating orders table: ', error)
+    throw error
+  }
 }
 
 /**
@@ -22,5 +27,10 @@ export function up(knex) {
  * @returns { Promise<void> }
  */
 export function down(knex) {
-  return knex.schema.dropTableIfExists('orders')
+  try {
+    return knex.schema.dropTableIfExists('Orders')
+  } catch (error) {
+    console.error('Error dropping orders table: ', error)
+    throw error
+  }
 }

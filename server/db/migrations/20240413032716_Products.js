@@ -4,7 +4,7 @@
  */
 export function up(knex) {
   try {
-    return knex.schema.createTable('products', function (table) {
+    return knex.schema.createTable('Products', function (table) {
       table.increments('id').primary()
       table.string('name').notNullable()
       table.string('description').notNullable()
@@ -25,7 +25,7 @@ export function up(knex) {
  */
 export function down(knex) {
   try {
-    return knex.schema.dropTableIfExists('products')
+    return knex.schema.dropTableIfExists('Products')
   } catch (error) {
     console.error('Error dropping products table: ', error)
     throw error

@@ -4,7 +4,7 @@
  */
 export function up(knex) {
   try {
-    return knex.schema.createTable('users', function (table) {
+    return knex.schema.createTable('Users', function (table) {
       table.increments('id').primary()
       table.string('name').notNullable()
       table.string('email').notNullable().unique()
@@ -23,7 +23,7 @@ export function up(knex) {
  */
 export function down(knex) {
   try {
-    return knex.schema.dropTableIfExists('users')
+    return knex.schema.dropTableIfExists('Users')
   } catch (error) {
     console.error('Error dropping users table: ', error)
     throw error
